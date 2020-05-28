@@ -3,14 +3,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/navbar";
 import Redevable from "./components/redevable";
-
+import Header from "./Header";
+import Footer from "./Footer";
+import Menu from "./Menu";
 function App() {
   return (
     <React.Fragment>
-      <Navbar />
-      <main className="container">
-        <Redevable />
-      </main>
+      <Header />
+      <Menu />
+      <Footer />
     </React.Fragment>
   );
 }

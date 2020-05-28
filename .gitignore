@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+
+AdminLTE-3.0.5/
 # dependencies
 /node_modules
 /.pnp
