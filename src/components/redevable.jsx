@@ -7,10 +7,6 @@ class Redevable extends Component {
       nom: "Ahmed",
       cin: "abc123",
     },
-    terrain: [
-      { id: 1, reference: "terrain1", surface: 20, lastYearPayed: 2020 },
-      { id: 2, reference: "terrain2", surface: 100, lastYearPayed: 2016 },
-    ],
   };
   /**
    * <p>Redevable: {this.state.redevable.id} </p>
@@ -19,10 +15,7 @@ class Redevable extends Component {
           <tr>Cin : {this.state.redevable.cin}</tr>
         </p>
 
-   */
-  render() {
-    return (
-      <div>
+        <div>
         <div className="card" style={{ width: "fit-content" }}>
           <h5 className="card-header">{this.state.redevable.nom}</h5>
           <div className="card-body">
@@ -48,6 +41,47 @@ class Redevable extends Component {
             ))}
           </ul>
         </div>
+      </div>
+
+   */
+  render() {
+    return (
+      <div className="card card-primary">
+        <div className="card-header">
+          <h3 className="card-title">Redevable Information</h3>
+        </div>
+        {/* /.card-header */}
+        <div className="card-body">
+          <strong>
+            <i className="fas fa-book mr-1" /> Education
+          </strong>
+          <p className="text-muted">
+            B.S. in Computer Science from the University of Tennessee at
+            Knoxville
+          </p>
+          <hr />
+          <strong>
+            <i className="fas fa-map-marker-alt mr-1" /> Location
+          </strong>
+          <p className="text-muted">Malibu, California</p>
+          <hr />
+          <strong>
+            <i className="fas fa-pencil-alt mr-1" /> Skills
+          </strong>
+          <p className="text-muted">
+            <span className="tag tag-danger">UI Design</span>
+            <span className="tag tag-success">Coding</span>
+            <span className="tag tag-info">Javascript</span>
+            <span className="tag tag-warning">PHP</span>
+            <span className="tag tag-primary">Node.js</span>
+          </p>
+          <hr />
+          <strong>
+            <i className="far fa-file-alt mr-1" /> Identification
+          </strong>{" "}
+          AB123
+        </div>
+        {/* /.card-body */}
       </div>
     );
   }
