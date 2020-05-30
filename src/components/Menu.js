@@ -54,24 +54,30 @@ class Menu extends Component {
                   <li className="nav-item">
                     <a href="./index.html" className="nav-link">
                       <i className="far fa-circle nav-icon" />
-                      <p>Dashboard v1</p>
+                      <p>Taxes</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a href="./index2.html" className="nav-link active">
                       <i className="far fa-circle nav-icon" />
-                      <p>Dashboard v2</p>
+                      <p>Redevables</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a href="./index3.html" className="nav-link">
                       <i className="far fa-circle nav-icon" />
-                      <p>Dashboard v3</p>
+                      <p>Terrains</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./index3.html" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Taux</p>
                     </a>
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a href="pages/widgets.html" className="nav-link">
                   <i className="nav-icon fas fa-th" />
                   <p>
@@ -300,7 +306,7 @@ class Menu extends Component {
                     </a>
                   </li>
                 </ul>
-              </li>
+            </li>*/}
               <li className="nav-header">EXAMPLES</li>
               <li className="nav-item">
                 <a href="pages/calendar.html" className="nav-link">

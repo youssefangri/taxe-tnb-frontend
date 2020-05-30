@@ -6,6 +6,8 @@ class Redevable extends Component {
       id: 1,
       nom: "Ahmed",
       cin: "abc123",
+      address: "Marrakech",
+      email: "exemple@gmail.com",
     },
   };
   /**
@@ -53,33 +55,25 @@ class Redevable extends Component {
         {/* /.card-header */}
         <div className="card-body">
           <strong>
-            <i className="fas fa-book mr-1" /> Education
+            <i className="fas fa-user mr-1" /> Name:{" "}
           </strong>
-          <p className="text-muted">
-            B.S. in Computer Science from the University of Tennessee at
-            Knoxville
-          </p>
+          Ahmed Benjaloun
           <hr />
           <strong>
-            <i className="fas fa-map-marker-alt mr-1" /> Location
-          </strong>
-          <p className="text-muted">Malibu, California</p>
-          <hr />
-          <strong>
-            <i className="fas fa-pencil-alt mr-1" /> Skills
-          </strong>
-          <p className="text-muted">
-            <span className="tag tag-danger">UI Design</span>
-            <span className="tag tag-success">Coding</span>
-            <span className="tag tag-info">Javascript</span>
-            <span className="tag tag-warning">PHP</span>
-            <span className="tag tag-primary">Node.js</span>
-          </p>
-          <hr />
-          <strong>
-            <i className="far fa-file-alt mr-1" /> Identification
+            <i className="far fa-id-card mr-1" />
+            CIN Identification
           </strong>{" "}
           AB123
+          <hr />
+          <strong>
+            <i className="fas fa-map-marker-alt mr-1" /> Adresse:{" "}
+          </strong>
+          Marrakech
+          <hr />
+          <strong>
+            <i className="fas fa-envelope mr-1" /> Mail:{" "}
+          </strong>
+          exemple@gmail.com
         </div>
         {/* /.card-body */}
       </div>
