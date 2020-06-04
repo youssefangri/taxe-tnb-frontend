@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Redevable extends Component {
+class PayeInformation extends Component {
   state = {
     redevable: {
       id: 1,
@@ -50,30 +50,21 @@ class Redevable extends Component {
     return (
       <div className="card card-primary">
         <div className="card-header">
-          <h3 className="card-title">Redevable Information</h3>
+          <h3 className="card-title">Taxe Information</h3>
         </div>
         {/* /.card-header */}
         <div className="card-body">
-          <strong>
-            <i className="fas fa-user mr-1" /> Name:{" "}
-          </strong>
-          {this.state.redevable.nom}
+          <strong>Taux par Metre carre : </strong>
           <hr />
-          <strong>
-            <i className="far fa-id-card mr-1" />
-            CIN Identification
-          </strong>{" "}
-          {this.state.redevable.cin}
+          <strong>Montant de Base: </strong>
           <hr />
-          <strong>
-            <i className="fas fa-map-marker-alt mr-1" /> Adresse:{" "}
-          </strong>
-          {this.state.redevable.address}
-          <hr />
-          <strong>
-            <i className="fas fa-envelope mr-1" /> Mail:{" "}
-          </strong>
-          {this.state.redevable.email}
+          <strong>Montant de Retard</strong> <hr />
+          <strong>Montant Totale: </strong>
+        </div>
+        <div className="card-footer">
+          <button type="submit" className="btn btn-warning">
+            Save
+          </button>
         </div>
         {/* /.card-body */}
       </div>
@@ -81,4 +72,4 @@ class Redevable extends Component {
   }
 }
 
-export default Redevable;
+export default PayeInformation;

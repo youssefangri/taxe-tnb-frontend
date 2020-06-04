@@ -58,7 +58,7 @@ class Menu extends Component {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="./index2.html" className="nav-link active">
+                    <a href="./index2.html" className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Redevables</p>
                     </a>
@@ -73,6 +73,41 @@ class Menu extends Component {
                     <a href="./index3.html" className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Taux</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="nav-item has-treeview menu-open">
+                <a href="/" className="nav-link active">
+                  <i className="nav-icon fas fa-tachometer-alt" />
+                  <p>
+                    Operation
+                    <i className="right fas fa-angle-left" />
+                  </p>
+                </a>
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <a href="./index.html" className="nav-link active">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Paye Taxes</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./index2.html" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Add Redevables</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./index3.html" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Add Terrains</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./index3.html" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Edit Taux</p>
                     </a>
                   </li>
                 </ul>
@@ -307,6 +342,7 @@ class Menu extends Component {
                   </li>
                 </ul>
             </li>*/}
+              {/*
               <li className="nav-header">EXAMPLES</li>
               <li className="nav-item">
                 <a href="pages/calendar.html" className="nav-link">
@@ -611,7 +647,7 @@ class Menu extends Component {
                   <i className="nav-icon far fa-circle text-info" />
                   <p>Informational</p>
                 </a>
-              </li>
+              </li>*/}
             </ul>
           </nav>
           {/* /.sidebar-menu */}
