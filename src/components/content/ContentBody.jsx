@@ -1,34 +1,24 @@
 import React, { Component } from "react";
-import Terrain from "../Terrain";
-import Redevable from "../Redevable";
-import PayeTaxe from "./PayeTaxe";
-import PayeInformation from "../PayeInformation";
 
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import PaymentPage from "../pages/PaymentPage";
+import RedevablePage from "../pages/RedevablePage";
+import RedevablesPage from "../pages/RedevablesPage";
 class ContentBody extends Component {
   state = {};
   render() {
     return (
-      <div className="content">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-6">
-              {/* /.card */}
-              <PayeTaxe />
-            </div>
-            {/* /.col-md-6 */}
-
-            <div className="col-lg-6">
-              <PayeInformation />
-              {/*
-              <Redevable />
-              <Terrain />*/}
-            </div>
-            {/* /.col-md-6 */}
-          </div>
-          {/* /.row */}
-        </div>
-        {/* /.container-fluid */}
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={PaymentPage} />
+          <Route exact path="/redevable" component={RedevablePage} />
+          <Route exact path="/redevables" component={RedevablesPage} />
+          {/**
+          <Route path="/posts/:slug" component={DynamicRouteComp} />
+          <Route component={NotFound} />
+           */}
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

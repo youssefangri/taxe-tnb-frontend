@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Menu extends Component {
   state = {};
@@ -49,6 +50,7 @@ class Menu extends Component {
                     Dashboard
                     <i className="right fas fa-angle-left" />
                   </p>
+                  z
                 </a>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
@@ -58,7 +60,7 @@ class Menu extends Component {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="./index2.html" className="nav-link">
+                    <a href="./redevables" className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Redevables</p>
                     </a>
