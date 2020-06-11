@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 
-import Terrain from "../Terrain";
-import Redevable from "../Redevable";
-
 class RedevablesPage extends Component {
   constructor(props) {
     super(props);
-    this.testApi = this.testApi.bind();
     this.state = {
       error: null,
       isLoaded: false,
-      items: [],
+      redevables: [],
     };
   }
-  testApi(event) {
-    console.log("event");
-  }
+
   componentDidMount() {
     fetch("http://localhost:8090/taxe-tnb/redevable/")
       .then((res) => res.json())
@@ -24,7 +18,7 @@ class RedevablesPage extends Component {
           console.log(result);
           this.setState({
             isLoaded: true,
-            items: result,
+            redevables: result,
           });
         },
 
@@ -40,20 +34,52 @@ class RedevablesPage extends Component {
       );
   }
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, redevables } = this.state;
     if (error) {
       return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Chargement…</div>;
     } else {
       return (
-        <ul>
-          {items.map((item) => (
-            <li key={item.name}>
-              {item.name} {item.price}
-            </li>
-          ))}
-        </ul>
+        <div className="content">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-12">
+                <div className="card card-primary">
+                  <div className="card-body table-responsive p-0">
+                    <table className="table table-striped table-valign-middle">
+                      <thead>
+                        <tr>
+                          <th>id</th>
+                          <th>Cin</th>
+                          <th>Nom</th>
+                          <th>More</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {redevables.map((redevable) => (
+                          <tr>
+                            <td>{redevable.id}</td>
+                            <td>{redevable.cin}</td>
+                            <td>{redevable.nom}</td>
+                            <td>
+                              <button
+                                className="btn btn-info btn-sm"
+                                onClick=""
+                              >
+                                More
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       );
     }
   }

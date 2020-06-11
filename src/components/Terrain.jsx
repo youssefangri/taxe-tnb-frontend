@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 
 class Terrain extends Component {
-  state = {
-    terrain: [
-      { id: 1, reference: "TER2058", surface: 20, lastYearPayed: 2020 },
-      { id: 2, reference: "TER2180", surface: 100, lastYearPayed: 2016 },
-      { id: 2, reference: "TER2240", surface: 120, lastYearPayed: 2016 },
-      { id: 2, reference: "TER3020", surface: 1500, lastYearPayed: 2016 },
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = { terrains: [] };
+  }
+
+  componentDidMount() {
+    const { terraisItem } = this.props;
+    console.log("in did mount terrain : " + terraisItem);
+    this.setState({ terrains: terraisItem });
+  }
+
   render() {
     return (
       <div className="card">
@@ -34,7 +37,7 @@ class Terrain extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.terrain.map((t) => (
+              {this.state.terrains.map((t) => (
                 <tr>
                   <td>{t.reference}</td>
                   <td>{t.surface}m²</td>

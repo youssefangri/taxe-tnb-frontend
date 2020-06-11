@@ -21,6 +21,9 @@ class PayeTaxe extends Component {
                 id="inputCIN"
                 placeholder="Enter CIN"
               />
+              <button className="btn btn-info btn-sm m-2" onClick="">
+                Get
+              </button>
             </div>
             <div className="form-group">
               <label>Terrain</label>

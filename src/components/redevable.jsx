@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 
 class Redevable extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = { redevable: [] };
+  }
+
+  componentDidMount() {
+    const { redevableItem } = this.props;
+    console.log("in did mount redevable : " + redevableItem);
+    this.setState({ redevable: redevableItem });
+  }
+  /**
+   * state = {
     redevable: {
       id: 1,
       nom: "Ahmed",
@@ -10,7 +21,8 @@ class Redevable extends Component {
       email: "exemple@gmail.com",
     },
   };
-  /**
+
+  
    * <p>Redevable: {this.state.redevable.id} </p>
         <p>
           Nom : {this.state.redevable.nom}
