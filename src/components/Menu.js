@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Menu extends Component {
   state = {};
@@ -54,28 +54,28 @@ class Menu extends Component {
                 </a>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
-                    <a href="./index.html" className="nav-link">
+                    <NavLink to="/taxes" exact={true} className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Taxes</p>
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="./redevables" className="nav-link">
+                    <NavLink to="/redevables" exact={true} className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Redevables</p>
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="./index3.html" className="nav-link">
+                    <NavLink to="/terrains" exact={true} className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Terrains</p>
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="./index3.html" className="nav-link">
+                    <NavLink to="/taux" exact={true} className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Taux</p>
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </li>
@@ -89,28 +89,36 @@ class Menu extends Component {
                 </a>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
-                    <a href="./index.html" className="nav-link active">
+                    <NavLink to="/paye" exact={true} className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Paye Taxes</p>
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="./index2.html" className="nav-link">
+                    <NavLink
+                      to="/redevables/save"
+                      exact={true}
+                      className="nav-link"
+                    >
                       <i className="far fa-circle nav-icon" />
                       <p>Add Redevables</p>
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="./index3.html" className="nav-link">
+                    <NavLink
+                      to="/terrains/new"
+                      exact={true}
+                      className="nav-link"
+                    >
                       <i className="far fa-circle nav-icon" />
                       <p>Add Terrains</p>
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="./index3.html" className="nav-link">
+                    <NavLink to="/taux/edit" exact={true} className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Edit Taux</p>
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </li>

@@ -1,25 +1,24 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
-class RedevablesPage extends Component {
+class tauxPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      redevables: [],
+      taux: [],
     };
   }
 
   componentDidMount() {
-    fetch("http://localhost:8090/taxe-tnb/redevable/")
+    fetch("http://localhost:8090/taxe-tnb/taux/")
       .then((res) => res.json())
       .then(
         (result) => {
           console.log(result);
           this.setState({
             isLoaded: true,
-            redevables: result,
+            taux: result,
           });
         },
 
@@ -35,7 +34,7 @@ class RedevablesPage extends Component {
       );
   }
   render() {
-    const { error, isLoaded, redevables } = this.state;
+    const { error, isLoaded, taux } = this.state;
     if (error) {
       return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
@@ -51,26 +50,17 @@ class RedevablesPage extends Component {
                     <table className="table table-striped table-valign-middle">
                       <thead>
                         <tr>
-                          <th>id</th>
-                          <th>Cin</th>
-                          <th>Nom</th>
-                          <th>More</th>
+                          <th>Surface Min</th>
+                          <th>Surface Max</th>
+                          <th>Prix Mettre Carre</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {redevables.map((redevable) => (
+                        {taux.map((t) => (
                           <tr>
-                            <td>{redevable.id}</td>
-                            <td>{redevable.cin}</td>
-                            <td>{redevable.nom}</td>
-                            <td>
-                              <Link
-                                className="btn btn-info btn-sm"
-                                to={"/redevable/cin/" + redevable.cin}
-                              >
-                                More
-                              </Link>
-                            </td>
+                            <td>{t.surfaceMin}</td>
+                            <td>{t.surfaceMax}</td>
+                            <td>{t.prixMetreCarre}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -86,4 +76,4 @@ class RedevablesPage extends Component {
   }
 }
 
-export default RedevablesPage;
+export default tauxPage;

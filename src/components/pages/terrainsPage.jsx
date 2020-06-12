@@ -1,25 +1,24 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
-class RedevablesPage extends Component {
+class terrainsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      redevables: [],
+      terrains: [],
     };
   }
 
   componentDidMount() {
-    fetch("http://localhost:8090/taxe-tnb/redevable/")
+    fetch("http://localhost:8090/taxe-tnb/terrain/")
       .then((res) => res.json())
       .then(
         (result) => {
           console.log(result);
           this.setState({
             isLoaded: true,
-            redevables: result,
+            terrains: result,
           });
         },
 
@@ -35,7 +34,7 @@ class RedevablesPage extends Component {
       );
   }
   render() {
-    const { error, isLoaded, redevables } = this.state;
+    const { error, isLoaded, terrains } = this.state;
     if (error) {
       return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
@@ -52,24 +51,27 @@ class RedevablesPage extends Component {
                       <thead>
                         <tr>
                           <th>id</th>
-                          <th>Cin</th>
-                          <th>Nom</th>
-                          <th>More</th>
+                          <th>Terrain Reference</th>
+                          <th>Redevable CIN</th>
+                          <th>Last Year Payed</th>
+                          <th>Surface</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {redevables.map((redevable) => (
+                        {terrains.map((terrain) => (
                           <tr>
-                            <td>{redevable.id}</td>
-                            <td>{redevable.cin}</td>
-                            <td>{redevable.nom}</td>
+                            <td>{terrain.id}</td>
+                            <td>{terrain.reference}</td>
+                            <td>{terrain.redevable.cin}</td>
+                            <td>{terrain.lastYearPayed}</td>
+                            <td>{terrain.surface}</td>
                             <td>
-                              <Link
+                              <button
                                 className="btn btn-info btn-sm"
-                                to={"/redevable/cin/" + redevable.cin}
+                                onClick=""
                               >
-                                More
-                              </Link>
+                                Paye
+                              </button>
                             </td>
                           </tr>
                         ))}
@@ -86,4 +88,4 @@ class RedevablesPage extends Component {
   }
 }
 
-export default RedevablesPage;
+export default terrainsPage;
