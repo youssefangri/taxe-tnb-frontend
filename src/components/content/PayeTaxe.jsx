@@ -1,9 +1,91 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 //import { Calendar } from "primereact/calendar";
 
 class PayeTaxe extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.handleGetTerrains = this.handleGetTerrains.bind(this);
+    this.handleChangeCin = this.handleChangeCin.bind(this);
+    this.handleSelectTerrain = this.handleSelectTerrain.bind(this);
+    //this.handleChangeLYP = this.handleChangeLYP.bind(this);
+    this.state = {
+      isLoaded: false,
+      cin: "",
+      terrains: [],
+      selectedTerrainRef: "",
+      selectedTerrain: [],
+      lastYearPayed: "",
+    };
+  }
+
+  handleSelectTerrain(event) {
+    console.log("selected: ");
+    this.setState({ selectedTerrainRef: event.target.value });
+    const url =
+      "http://localhost:8090/taxe-tnb/terrain/reference/" + event.target.value;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          this.setState({
+            isLoaded: true,
+            selectedTerrain: result,
+          });
+        },
+
+        // Remarque : il est important de traiter les erreurs ici
+        // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
+        // des exceptions provenant de réels bugs du composant.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+    event.preventDefault();
+  }
+
+  handleChangeCin(event) {
+    this.setState({ cin: event.target.value });
+  }
+  handleGetTerrains(event) {
+    const url =
+      "http://localhost:8090/taxe-tnb/terrain/redevable/cin/" + this.state.cin;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          this.setState({
+            isLoaded: true,
+            terrains: result,
+          });
+        },
+
+        // Remarque : il est important de traiter les erreurs ici
+        // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
+        // des exceptions provenant de réels bugs du composant.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+    event.preventDefault();
+  }
   render() {
+    let selectedLYP;
+    selectedLYP =
+      this.state.selectedTerrain === []
+        ? "N/A"
+        : this.state.selectedTerrain.lastYearPayed;
+    const { lastYearPayed } = this.state;
     return (
       <div className="card card-primary">
         <div className="card-header">
@@ -20,31 +102,37 @@ class PayeTaxe extends Component {
                 className="form-control"
                 id="inputCIN"
                 placeholder="Enter CIN"
+                value={this.state.cin}
+                onChange={this.handleChangeCin}
               />
-              <button className="btn btn-info btn-sm m-2" onClick="">
+              <Link
+                className="btn btn-info btn-sm m-2"
+                onClick={this.handleGetTerrains}
+              >
                 Get
-              </button>
+              </Link>
             </div>
             <div className="form-group">
               <label>Terrain</label>
               <select
                 className="form-control select2"
                 style={{ width: "100%" }}
+                value={this.state.selectedTerrainRef}
+                onChange={this.handleSelectTerrain}
               >
-                <option selected="selected">Terrain 1</option>
-                <option>Terrain 2</option>
-                <option>Terrain 3</option>
-                <option>Terrain 4</option>
-                <option>Terrain 5</option>
+                <option>---Select Terrain---</option>
+                {this.state.terrains.map((terrain) => (
+                  <option>{terrain.reference}</option>
+                ))}
               </select>
             </div>
 
             <div className="form-group">
-              <label>Last Year Payed</label>
+              <label>Last Year Payed :</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder={2016}
+                value={this.state.selectedTerrain.lastYearPayed}
                 disabled
               />
             </div>
@@ -55,7 +143,7 @@ class PayeTaxe extends Component {
                 type="numbre"
                 className="form-control"
                 id="inputAnnee"
-                placeholder="Entre Annee To Paye Taxe"
+                value={this.state.selectedTerrain.lastYearPayed + 1}
               />
             </div>
             <div className="form-group">
