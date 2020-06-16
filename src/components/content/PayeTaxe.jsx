@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+import "primereact/resources/themes/nova-light/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
+import { Calendar } from "primereact/calendar";
+//import DatePicker from "react-datepicker";
+//import "react-datepicker/dist/react-datepicker.css";
+//import DateTimePicker from "react-datetime-picker/dist/entry.nostyle";
 //import { Calendar } from "primereact/calendar";
 
 class PayeTaxe extends Component {
@@ -16,8 +25,15 @@ class PayeTaxe extends Component {
       selectedTerrainRef: "",
       selectedTerrain: [],
       lastYearPayed: "",
+      startDate: new Date(),
     };
   }
+
+  handleChangeDate = (date) => {
+    this.setState({
+      startDate: date,
+    });
+  };
 
   handleSelectTerrain(event) {
     console.log("selected: ");
@@ -64,6 +80,7 @@ class PayeTaxe extends Component {
           this.setState({
             isLoaded: true,
             terrains: result,
+            date: new Date(),
           });
         },
 
@@ -80,12 +97,6 @@ class PayeTaxe extends Component {
     event.preventDefault();
   }
   render() {
-    let selectedLYP;
-    selectedLYP =
-      this.state.selectedTerrain === []
-        ? "N/A"
-        : this.state.selectedTerrain.lastYearPayed;
-    const { lastYearPayed } = this.state;
     return (
       <div className="card card-primary">
         <div className="card-header">
@@ -148,27 +159,17 @@ class PayeTaxe extends Component {
             </div>
             <div className="form-group">
               <label>Date Presentation:</label>
-              <div
-                className="input-group date"
-                id="reservationdate"
-                data-target-input="nearest"
-              >
-                <input
-                  type="text"
-                  className="form-control datetimepicker-input"
-                  data-target="#reservationdate"
-                />
-                <div
-                  className="input-group-append"
-                  data-target="#reservationdate"
-                  data-toggle="datetimepicker"
-                >
-                  <div className="input-group-text">
-                    <i className="fa fa-calendar" />
-                  </div>
-                </div>
+              <div>
+                <Calendar
+                  showIcon={true}
+                  value={this.state.date}
+                  onChange={(e) => this.setState({ date: e.value })}
+                  inputClassName="container"
+                  style={{ width: "93%" }}
+                ></Calendar>
               </div>
             </div>
+            {/** 
             <div className="form-check">
               <input
                 type="checkbox"
@@ -179,6 +180,7 @@ class PayeTaxe extends Component {
                 Check me out
               </label>
             </div>
+            */}
           </div>
 
           {/* /.card-body */}
