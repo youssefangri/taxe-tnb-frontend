@@ -17,6 +17,7 @@ class PayeTaxe extends Component {
     this.handleGetTerrains = this.handleGetTerrains.bind(this);
     this.handleChangeCin = this.handleChangeCin.bind(this);
     this.handleSelectTerrain = this.handleSelectTerrain.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     //this.handleChangeLYP = this.handleChangeLYP.bind(this);
     this.state = {
       isLoaded: false,
@@ -24,16 +25,10 @@ class PayeTaxe extends Component {
       terrains: [],
       selectedTerrainRef: "",
       selectedTerrain: [],
-      lastYearPayed: "",
-      startDate: new Date(),
+      YearToPaye: "",
+      date: new Date(),
     };
   }
-
-  handleChangeDate = (date) => {
-    this.setState({
-      startDate: date,
-    });
-  };
 
   handleSelectTerrain(event) {
     console.log("selected: ");
@@ -49,6 +44,7 @@ class PayeTaxe extends Component {
           this.setState({
             isLoaded: true,
             selectedTerrain: result,
+            YearToPaye: result.lastYearPayed + 1,
           });
         },
 
@@ -80,7 +76,7 @@ class PayeTaxe extends Component {
           this.setState({
             isLoaded: true,
             terrains: result,
-            date: new Date(),
+            //date: new Date(),
           });
         },
 
@@ -96,7 +92,51 @@ class PayeTaxe extends Component {
       );
     event.preventDefault();
   }
+
+  handleSubmit(event) {
+    /*alert(
+      "Cin: " +
+        this.state.cin +
+        " Terrain: " +
+        this.state.selectedTerrainRef +
+        " Annee: " +
+        this.state.YearToPaye +
+        " date : " +
+        this.state.date
+    );*/
+    const { cin, selectedTerrainRef, YearToPaye, date } = this.state;
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    };
+    fetch(
+      "http://localhost:8090/taxe-tnb/taxe/simuler/terrain/reference/" +
+        selectedTerrainRef +
+        "/annee/" +
+        YearToPaye +
+        "/cin/" +
+        cin +
+        "/date/" +
+        date,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data[0] > 0) {
+          console.log("succes");
+          console.log(data);
+        } else {
+          alert("Erreur");
+        }
+      });
+    event.preventDefault();
+  }
   render() {
+    const { cin, selectedTerrainRef, YearToPaye, date } = this.state;
     return (
       <div className="card card-primary">
         <div className="card-header">
@@ -104,28 +144,35 @@ class PayeTaxe extends Component {
         </div>
         {/* /.card-header */}
         {/* form start */}
-        <form role="form">
+        <form role="form" onSubmit={this.props.doSimulate}>
           <div className="card-body">
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Redevable CIN</label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputCIN"
-                placeholder="Enter CIN"
-                value={this.state.cin}
-                onChange={this.handleChangeCin}
-              />
-              <Link
-                className="btn btn-info btn-sm m-2"
-                onClick={this.handleGetTerrains}
-              >
-                Get
-              </Link>
+              <div className="input-group input-group">
+                <input
+                  name="cin"
+                  type="text"
+                  className="form-control"
+                  id="inputCIN"
+                  placeholder="Enter CIN"
+                  value={this.state.cin}
+                  onChange={this.handleChangeCin}
+                />
+                <span class="input-group-append">
+                  <Link
+                    className="btn btn-info btn-flat"
+                    onClick={this.handleGetTerrains}
+                    type="button"
+                  >
+                    Get
+                  </Link>
+                </span>
+              </div>
             </div>
             <div className="form-group">
               <label>Terrain</label>
               <select
+                name="selectedTerrainRef"
                 className="form-control select2"
                 style={{ width: "100%" }}
                 value={this.state.selectedTerrainRef}
@@ -151,19 +198,26 @@ class PayeTaxe extends Component {
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Annee</label>
               <input
+                name="YearToPaye"
                 type="numbre"
                 className="form-control"
                 id="inputAnnee"
-                value={this.state.selectedTerrain.lastYearPayed + 1}
+                value={this.state.YearToPaye}
               />
             </div>
             <div className="form-group">
               <label>Date Presentation:</label>
               <div>
                 <Calendar
+                  name="date"
                   showIcon={true}
+                  dateFormat="dd-mm-yy"
                   value={this.state.date}
-                  onChange={(e) => this.setState({ date: e.value })}
+                  onChange={(e) =>
+                    this.setState({
+                      date: e.value,
+                    })
+                  }
                   inputClassName="container"
                   style={{ width: "93%" }}
                 ></Calendar>
