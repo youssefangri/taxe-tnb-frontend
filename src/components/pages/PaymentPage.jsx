@@ -7,7 +7,10 @@ class PaymentPage extends Component {
     super(props);
     this.handleSimulate = this.handleSimulate.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDownloadPdf = this.handleDownloadPdf.bind(this);
     this.state = {
+      simulated: false,
+      saved: false,
       cin: "",
       selectedTerrainRef: "",
       YearToPaye: "",
@@ -15,11 +18,14 @@ class PaymentPage extends Component {
       data: {
         annee: "",
         datePresentation: "",
+        nombreMoisRetard: "",
         montant: "",
         montantBase: "",
         montantRetard: "",
         nombreMoisRetard: "",
+        terrain: { reference: "", surface: "" },
         tauxTnb: { prixMetreCarre: "" },
+        redevable: { cin: "", nom: "" },
       },
     };
   }
@@ -54,7 +60,7 @@ class PaymentPage extends Component {
       .then((response) => response.json())
       .then((result) => {
         if (result[0] > 0) {
-          this.setState({ data: result[1] });
+          this.setState({ data: result[1], simulated: true });
         } else {
           alert("Erreur");
         }
@@ -88,12 +94,28 @@ class PaymentPage extends Component {
         if (result[0] > 0) {
           console.log("succes: taxe Saved");
           alert("succes: taxe Saved");
+          this.setState({
+            saved: true,
+          });
         } else {
           alert("Erreur: Taxe not saved");
         }
       });
 
     //event.preventDefault();
+  }
+
+  handleDownloadPdf(event) {
+    const { selectedTerrainRef, YearToPaye } = this.state;
+    const url =
+      "http://localhost:8090/taxe-tnb/taxe/pdf/terrain/reference/" +
+      selectedTerrainRef +
+      "/annee/" +
+      YearToPaye;
+
+    fetch(url);
+
+    event.preventDefault();
   }
 
   handleData = () => {
@@ -104,21 +126,20 @@ class PaymentPage extends Component {
       <div className="content">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col">
               {/* /.card */}
               <PayeTaxe doSimulate={this.handleSimulate} />
+              {this.state.simulated && (
+                <PayeInformation
+                  data={this.handleData()}
+                  doSave={this.handleSave}
+                  doDownladPdf={this.handleDownloadPdf}
+                  doSaved={this.state.saved}
+                />
+              )}
             </div>
             {/* /.col-md-6 */}
 
-            <div className="col-lg-6">
-              <PayeInformation
-                data={this.handleData()}
-                doSave={this.handleSave}
-              />
-              {/*
-              <Redevable />
-              <Terrain />*/}
-            </div>
             {/* /.col-md-6 */}
           </div>
           {/* /.row */}

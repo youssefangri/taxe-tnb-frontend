@@ -19,11 +19,21 @@ class PayeInformation extends Component {
         </div>
         {/* /.card-header */}
         <div className="card-body">
+          <strong>Redevable Name: {this.props.data.redevable.nom}</strong>
+          <hr />
+          <strong>Redevable cin: {this.props.data.redevable.cin}</strong>
+          <hr />
           <strong>
-            Taux par Metre carre : {this.props.data.tauxTnb.prixMetreCarre}
+            Terrain Reference : {this.props.data.terrain.reference}
           </strong>
           <hr />
+          <strong>Terrain Surface : {this.props.data.terrain.surface}</strong>
+          <hr />
           <strong>Montant de Base: {this.props.data.montantBase}</strong>
+          <hr />
+          <strong>
+            Nombre Mois Retard: {this.props.data.nombreMoisRetard}
+          </strong>
           <hr />
           <strong>
             Montant de Retard: {this.props.data.montantRetard}
@@ -39,6 +49,15 @@ class PayeInformation extends Component {
           >
             Save
           </button>
+          {this.props.doSaved && (
+            <button
+              type="submit"
+              className="btn btn-warning m-3"
+              onClick={this.props.doDownladPdf}
+            >
+              Download Report pdf
+            </button>
+          )}
         </div>
         {/* /.card-body */}
       </div>

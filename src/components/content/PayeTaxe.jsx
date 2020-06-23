@@ -164,7 +164,7 @@ class PayeTaxe extends Component {
                     onClick={this.handleGetTerrains}
                     type="button"
                   >
-                    Get
+                    Find Redevable
                   </Link>
                 </span>
               </div>
