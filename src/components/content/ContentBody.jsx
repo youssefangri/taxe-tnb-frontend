@@ -8,6 +8,7 @@ import AddRedevable from "../pages/AddRedevable";
 import taxesPage from "../pages/taxesPage";
 import terrainsPage from "../pages/terrainsPage";
 import tauxPage from "../pages/tauxPage";
+import BarChart from "../BarChart";
 class ContentBody extends Component {
   state = {};
   render() {
@@ -21,6 +22,7 @@ class ContentBody extends Component {
         <Route exact path="/taxes" component={taxesPage} />
         <Route exact path="/terrains" component={terrainsPage} />
         <Route exact path="/taux" component={tauxPage} />
+        <Route exact path="/statistique/year" component={BarChart} />
         {/**
           <Route path="/posts/:slug" component={DynamicRouteComp} />
           <Route component={NotFound} />
