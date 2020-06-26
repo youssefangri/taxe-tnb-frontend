@@ -22,7 +22,7 @@ class ContentBody extends Component {
         <Route exact path="/taxes" component={taxesPage} />
         <Route exact path="/terrains" component={terrainsPage} />
         <Route exact path="/taux" component={tauxPage} />
-        <Route exact path="/statistique/year" component={BarChart} />
+        <Route exact path="/statistique" component={BarChart} />
         {/**
           <Route path="/posts/:slug" component={DynamicRouteComp} />
           <Route component={NotFound} />

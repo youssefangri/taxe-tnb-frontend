@@ -132,7 +132,7 @@ class Menu extends Component {
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
                     <NavLink
-                      to="/statistique/year"
+                      to="/statistique"
                       exact={true}
                       className="nav-link"
                     >
