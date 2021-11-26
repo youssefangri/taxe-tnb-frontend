@@ -29,7 +29,7 @@ class Menu extends Component {
             </div>
             <div className="info">
               <a href="/" className="d-block">
-                Youssef Angri
+                Admin
               </a>
             </div>
           </div>
@@ -138,6 +138,16 @@ class Menu extends Component {
                     >
                       <i className="far fa-circle nav-icon" />
                       <p>Revenue in Year</p>
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      to="/statistique-v2"
+                      exact={true}
+                      className="nav-link"
+                    >
+                      <i className="far fa-circle nav-icon" />
+                      <p>Revenue in Year V2</p>
                     </NavLink>
                   </li>
                 </ul>

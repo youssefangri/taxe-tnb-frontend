@@ -50,31 +50,25 @@ class terrainsPage extends Component {
                     <table className="table table-striped table-valign-middle">
                       <thead>
                         <tr>
-                          <th>id</th>
-                          <th>Terrain Reference</th>
-                          <th>Redevable CIN</th>
-                          <th>Last Year Payed</th>
-                          <th>Surface</th>
+                          <th>photo</th>
+                          <th>Nom Complete</th>
+                          <th>Voir/Telecharger</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {terrains.map((terrain) => (
-                          <tr>
-                            <td>{terrain.id}</td>
-                            <td>{terrain.reference}</td>
-                            <td>{terrain.redevable.cin}</td>
-                            <td>{terrain.lastYearPayed}</td>
-                            <td>{terrain.surface}</td>
-                            <td>
-                              <button
-                                className="btn btn-info btn-sm"
-                                onClick=""
-                              >
-                                Paye
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
+                        <tr>
+                          <td>photo</td>
+                          <td>Angri Youusef</td>
+
+                          <td>
+                            <button className="btn btn-info btn-sm" onClick="">
+                              Voir
+                            </button>
+                            <button className="btn btn-info btn-sm" onClick="">
+                              Voir
+                            </button>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>

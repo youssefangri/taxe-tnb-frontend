@@ -9,6 +9,7 @@ import taxesPage from "../pages/taxesPage";
 import terrainsPage from "../pages/terrainsPage";
 import tauxPage from "../pages/tauxPage";
 import BarChart from "../BarChart";
+import BarChartV2 from "../BarChartV2";
 class ContentBody extends Component {
   state = {};
   render() {
@@ -23,6 +24,7 @@ class ContentBody extends Component {
         <Route exact path="/terrains" component={terrainsPage} />
         <Route exact path="/taux" component={tauxPage} />
         <Route exact path="/statistique" component={BarChart} />
+        <Route exact path="/statistique-v2/" component={BarChartV2} />
         {/**
           <Route path="/posts/:slug" component={DynamicRouteComp} />
           <Route component={NotFound} />
