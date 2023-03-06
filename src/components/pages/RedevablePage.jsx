@@ -8,7 +8,7 @@ class RedevablePage extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      url: "http://localhost:8090/taxe-tnb/",
+      url: `${process.env.REACT_APP_API}`+"/taxe-tnb/",
       redevable: [],
       terrains: [],
     };

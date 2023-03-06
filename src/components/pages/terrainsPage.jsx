@@ -11,7 +11,7 @@ class terrainsPage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8090/taxe-tnb/terrain/")
+    fetch(`${process.env.REACT_APP_API}`+"/taxe-tnb/terrain/")
       .then((res) => res.json())
       .then(
         (result) => {

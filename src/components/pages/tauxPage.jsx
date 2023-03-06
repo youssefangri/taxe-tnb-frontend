@@ -11,7 +11,7 @@ class tauxPage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8090/taxe-tnb/taux/")
+    fetch(`${process.env.REACT_APP_API}`+"/taxe-tnb/taux/")
       .then((res) => res.json())
       .then(
         (result) => {

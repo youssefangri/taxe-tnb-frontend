@@ -47,7 +47,7 @@ class PaymentPage extends Component {
       body: JSON.stringify({}),
     };
     fetch(
-      "http://localhost:8090/taxe-tnb/taxe/simuler/terrain/reference/" +
+      `${process.env.REACT_APP_API}`+"/taxe-tnb/taxe/simuler/terrain/reference/" +
         selectedTerrainRef.value +
         "/annee/" +
         YearToPaye.value +
@@ -79,7 +79,7 @@ class PaymentPage extends Component {
       body: JSON.stringify({}),
     };
     fetch(
-      "http://localhost:8090/taxe-tnb/taxe/save/terrain/reference/" +
+      `${process.env.REACT_APP_API}`+"/taxe-tnb/taxe/save/terrain/reference/" +
         selectedTerrainRef +
         "/annee/" +
         YearToPaye +
@@ -108,7 +108,7 @@ class PaymentPage extends Component {
   handleDownloadPdf(event) {
     const { selectedTerrainRef, YearToPaye } = this.state;
     const url =
-      "http://localhost:8090/taxe-tnb/taxe/pdf/terrain/reference/" +
+    `${process.env.REACT_APP_API}`+"/taxe-tnb/taxe/pdf/terrain/reference/" +
       selectedTerrainRef +
       "/annee/" +
       YearToPaye;

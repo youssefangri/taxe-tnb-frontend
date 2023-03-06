@@ -28,7 +28,7 @@ class AddRedevable extends Component {
         nom: this.state.nom,
       }),
     };
-    fetch("http://localhost:8090/taxe-tnb/redevable/", requestOptions)
+    fetch(`${process.env.REACT_APP_API}`+"/taxe-tnb/redevable/", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data > 0) {

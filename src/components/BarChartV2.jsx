@@ -16,7 +16,7 @@ class BarChartV2 extends Component {
     this.state = {
       error: null,
       isLoaded: true,
-      url: "http://localhost:8090/taxe-tnb/taxe/statistic/v2/annee/",
+      url: `${process.env.REACT_APP_API}`+"/taxe-tnb/taxe/statistic/v2/annee/",
       totalMontantBase: [],
       totalMontantRetard: [],
       annee: "",

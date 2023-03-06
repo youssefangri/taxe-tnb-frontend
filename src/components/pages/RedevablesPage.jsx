@@ -12,7 +12,7 @@ class RedevablesPage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8090/taxe-tnb/redevable/")
+    fetch(`${process.env.REACT_APP_API}`+"/taxe-tnb/redevable/")
       .then((res) => res.json())
       .then(
         (result) => {

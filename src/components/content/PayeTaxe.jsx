@@ -34,7 +34,7 @@ class PayeTaxe extends Component {
     console.log("selected: ");
     this.setState({ selectedTerrainRef: event.target.value });
     const url =
-      "http://localhost:8090/taxe-tnb/terrain/reference/" + event.target.value;
+    `${process.env.REACT_APP_API}`+"/taxe-tnb/terrain/reference/" + event.target.value;
 
     fetch(url)
       .then((res) => res.json())
@@ -66,7 +66,7 @@ class PayeTaxe extends Component {
   }
   handleGetTerrains(event) {
     const url =
-      "http://localhost:8090/taxe-tnb/terrain/redevable/cin/" + this.state.cin;
+    `${process.env.REACT_APP_API}`+"/taxe-tnb/terrain/redevable/cin/" + this.state.cin;
 
     fetch(url)
       .then((res) => res.json())
@@ -114,7 +114,7 @@ class PayeTaxe extends Component {
       body: JSON.stringify({}),
     };
     fetch(
-      "http://localhost:8090/taxe-tnb/taxe/simuler/terrain/reference/" +
+      `${process.env.REACT_APP_API}`+"/taxe-tnb/taxe/simuler/terrain/reference/" +
         selectedTerrainRef +
         "/annee/" +
         YearToPaye +
